@@ -4,7 +4,7 @@ namespace Siderum.Domain.Entities;
 
 public class Grupo : EntityBase
 {
-    public string Tipo { get; set; }
+    public string Tipos { get; set; }
 
     // Relacionamento
     public virtual IEnumerable<Usuario> Usuarios { get; set; }
