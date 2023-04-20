@@ -1,7 +1,11 @@
-﻿namespace Siderum.Domain.Entities;
+﻿using Siderum.Domain.Entities.Base;
 
-public class Grupo
+namespace Siderum.Domain.Entities;
+
+public class Grupo : EntityBase
 {
-    public Guid Id { get; set; }
-    public string Nome { get; set; }
+    public string Tipo { get; set; }
+
+    // Relacionamento
+    public virtual IEnumerable<Usuario> Usuarios { get; set; }
 }
