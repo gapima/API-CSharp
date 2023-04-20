@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_Domain", "03_Domain", "{D6A3CC25-75BD-4915-9E10-535A9E8B9954}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Siderun.Domain", "Siderun.Domain\Siderun.Domain.csproj", "{E7F134AA-B068-4ACE-B4D1-08152E860DAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Siderum.Domain", "Siderun.Domain\Siderum.Domain.csproj", "{E7F134AA-B068-4ACE-B4D1-08152E860DAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
