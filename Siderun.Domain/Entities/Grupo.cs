@@ -6,6 +6,6 @@ public class Grupo : EntityBase
 {
     public string Tipo { get; set; }
 
-    // Relacionamento
+    // Relationship
     public virtual IEnumerable<Usuario> Usuarios { get; set; }
 }

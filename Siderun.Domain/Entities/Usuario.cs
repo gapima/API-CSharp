@@ -9,8 +9,9 @@ public class Usuario : EntityBase
     public string Login { get; set; }
     public string Senha { get; set; }
 
-    // Relacionamento
+    // Relationship
     public Guid GrupoId { get; set; }
     public virtual Grupo Grupo { get; set; }
+    public virtual IEnumerable<Processo> Processos { get; set; }
 }
 
