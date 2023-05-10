@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_Domain", "03_Domain", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Siderum.Domain", "Siderun.Domain\Siderum.Domain.csproj", "{E7F134AA-B068-4ACE-B4D1-08152E860DAD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04_Infra", "04_Infra", "{491A5417-A347-4854-82EF-6340DB5B35C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Siderum.Infra", "Siderum.Infra\Siderum.Infra.csproj", "{71B1B0FB-C0C1-4CB1-BFB8-5CCCA7B4BD5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +21,17 @@ Global
 		{E7F134AA-B068-4ACE-B4D1-08152E860DAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7F134AA-B068-4ACE-B4D1-08152E860DAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7F134AA-B068-4ACE-B4D1-08152E860DAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71B1B0FB-C0C1-4CB1-BFB8-5CCCA7B4BD5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71B1B0FB-C0C1-4CB1-BFB8-5CCCA7B4BD5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71B1B0FB-C0C1-4CB1-BFB8-5CCCA7B4BD5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71B1B0FB-C0C1-4CB1-BFB8-5CCCA7B4BD5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E7F134AA-B068-4ACE-B4D1-08152E860DAD} = {D6A3CC25-75BD-4915-9E10-535A9E8B9954}
+		{71B1B0FB-C0C1-4CB1-BFB8-5CCCA7B4BD5F} = {491A5417-A347-4854-82EF-6340DB5B35C5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {790BC264-BAAF-48F1-B646-A13994BA647A}
