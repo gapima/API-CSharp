@@ -8,7 +8,7 @@ public class SituacaoCredito : EntityBase
 
     //relationship
     public Guid ClienteId { get; set; }
-    public virtual Cliente cliente { get; set; }
+    public virtual Cliente Cliente { get; set; }
 
     public Guid CredorId { get; set; }
     public virtual IEnumerable<Credores> Credores { get; set; }

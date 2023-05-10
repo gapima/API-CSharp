@@ -10,5 +10,5 @@ public class ContatoCliente : EntityBase
 
     //Relationship
     public Guid ClienteId { get; set; }
-    public virtual Cliente cliente { get; set; }
+    public virtual Cliente Cliente { get; set; }
 }

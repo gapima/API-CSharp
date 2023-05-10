@@ -22,5 +22,5 @@ public class Processo : EntityBase
     public virtual Indicador indicador { get; set; }
 
     public Guid ClienteId { get; set; }
-    public virtual Cliente cliente { get; set; }
+    public virtual Cliente Cliente { get; set; }
 }
