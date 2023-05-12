@@ -2,7 +2,7 @@
 
 namespace PlanBia.Application.Dtos;
 
-public class ContatoIndicadorFlat
+public class ContatoIndicadorDtoFlat
 {
     public Guid Id { get; set; }
     public string Tipo { get; set; }
