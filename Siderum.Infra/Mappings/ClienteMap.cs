@@ -16,11 +16,10 @@ public class ClienteMap : IEntityTypeConfiguration<Cliente>
         builder.Property(x => x.RestricaoSerasa);
         builder.Property(x => x.RendaTotal);
 
-        builder.HasMany(x => x.Processos).WithOne(x => x.Cliente).HasForeignKey(x => x.ClienteId).OnDelete(DeleteBehavior.NoAction);
-        builder.HasMany(x => x.Documentos).WithOne(x => x.Cliente).HasForeignKey(x => x.ClienteId).OnDelete(DeleteBehavior.NoAction);
-        builder.HasMany(x => x.RendaCliente).WithOne(x => x.Cliente).HasForeignKey(x => x.ClienteId).OnDelete(DeleteBehavior.NoAction);
-        builder.HasMany(x => x.ContatoCliente).WithOne(x => x.Cliente).HasForeignKey(x => x.ClienteId).OnDelete(DeleteBehavior.NoAction);
-        builder.HasMany(x => x.SituacaoCredito).WithOne(x => x.Cliente).HasForeignKey(x => x.ClienteId).OnDelete(DeleteBehavior.NoAction);
-
+        builder.HasMany(x => x.Processos).WithOne(x => x.Cliente).HasForeignKey(x => x.ClienteId).OnDelete(DeleteBehavior.Cascade);
+        builder.HasMany(x => x.Documentos).WithOne(x => x.Cliente).HasForeignKey(x => x.ClienteId).OnDelete(DeleteBehavior.Cascade);
+        builder.HasMany(x => x.RendaCliente).WithOne(x => x.Cliente).HasForeignKey(x => x.ClienteId).OnDelete(DeleteBehavior.Cascade);
+        builder.HasMany(x => x.ContatoCliente).WithOne(x => x.Cliente).HasForeignKey(x => x.ClienteId).OnDelete(DeleteBehavior.Cascade);
+        builder.HasMany(x => x.SituacaoCredito).WithOne(x => x.Cliente).HasForeignKey(x => x.ClienteId).OnDelete(DeleteBehavior.Cascade);
     }
 }

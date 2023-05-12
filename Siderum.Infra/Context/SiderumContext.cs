@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Siderum.Domain.Entities;
+using Siderum.Infra.Mappings;
 
 namespace Siderum.Infra.Context;
 
@@ -30,7 +31,7 @@ public class SiderumContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
-        //optionsBuilder.UseSqlServer(SharedConstants.ConnectionString);
+        optionsBuilder.UseSqlServer("Server=.;Database=PlanBia;Trusted_Connection=True;");
     }
 
 }
