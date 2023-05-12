@@ -31,7 +31,7 @@ public class SiderumContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
-        optionsBuilder.UseSqlServer("Server=.;Database=PlanBia;Trusted_Connection=True;");
+        optionsBuilder.UseSqlServer("Data Source=DESKTOP-HIJRUR0\\KAMISAMA;Initial Catalog=PlanBia;Integrated Security=true");
     }
 
 }
