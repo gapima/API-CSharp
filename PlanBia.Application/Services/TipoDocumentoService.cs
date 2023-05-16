@@ -1,4 +1,5 @@
 ﻿
+
 using AutoMapper;
 using PlanBia.Application.Dtos;
 using PlanBia.Application.Interfaces;
@@ -7,43 +8,43 @@ using Siderum.Infra.Interfaces;
 
 namespace PlanBia.Application.Services;
 
-public class RendaClienteService : IRendaClienteService
+public class TipoDocumentoService : ITipoDocumentoService
 {
-    private readonly IRendaClienteRepository _repository;
+    private readonly ITipoDocumentoRepository _repository;
     private readonly IMapper _mapper;
 
-    public RendaClienteService(IRendaClienteRepository repository, IMapper mapper)
+    public TipoDocumentoService(ITipoDocumentoRepository repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
     }
 
-    public async Task<List<RendaClienteDto>> Get()
+    public async Task<List<TipoDocumentoDto>> Get()
     {
-        var rendaClienteEntities = await _repository.Get();
-        var rendaClienteDto = _mapper.Map<List<RendaClienteDto>>(rendaClienteEntities);
-        return rendaClienteDto;
+        var tipoDocumentoEntities = await _repository.Get();
+        var tipoDocumentoDto = _mapper.Map<List<TipoDocumentoDto>>(tipoDocumentoEntities);
+        return tipoDocumentoDto;
     }
 
-    public async Task<RendaClienteDto> Get(Guid id)
+    public async Task<TipoDocumentoDto> Get(Guid id)
     {
         var entity = await _repository.Get(id);
-        var entityDto = _mapper.Map<RendaClienteDto>(entity);
+        var entityDto = _mapper.Map<TipoDocumentoDto>(entity);
         return entityDto;
     }
-    public async Task<RendaClienteDtoFlat> Create(RendaClienteDtoFlat obj)
+    public async Task<TipoDocumentoDtoFlat> Create(TipoDocumentoDtoFlat obj)
     {
-        var entity = _mapper.Map<RendaCliente>(obj);
+        var entity = _mapper.Map<TipoDocumento>(obj);
         await _repository.Create(entity);
         obj.Id = entity.Id;
         return obj;
     }
-    public async Task<RendaClienteDtoFlat> Update(Guid id, RendaClienteDtoFlat obj)
+    public async Task<TipoDocumentoDtoFlat> Update(Guid id, TipoDocumentoDtoFlat obj)
     {
         var entityExists = await _repository.Get(id);
         if (entityExists != null) 
         {
-            var entity = _mapper.Map<RendaCliente>(obj);
+            var entity = _mapper.Map<TipoDocumento>(obj);
             entity.Id = entityExists.Id;
             await _repository.Update(entity);
             obj.Id = entity.Id;

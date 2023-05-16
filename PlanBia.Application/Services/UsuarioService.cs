@@ -7,7 +7,7 @@ using Siderum.Infra.Interfaces;
 
 namespace PlanBia.Application.Services;
 
-partial class UsuarioService : IUsuarioService
+public class UsuarioService : IUsuarioService
 {
     private readonly IUsuarioRepository _repository;
     private readonly IMapper _mapper;
