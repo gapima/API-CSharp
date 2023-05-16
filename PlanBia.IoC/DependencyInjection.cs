@@ -18,9 +18,30 @@ public static class DependencyInjection
 
         // Repositories
         services.AddScoped<IClienteRepository, ClienteRepository>();
+        services.AddScoped<IContatoClienteRepository, ContatoClienteRepository>();
+        services.AddScoped<IContatoIndicadorRepository, ContatoIndicadorRepository>();
+        services.AddScoped<ICredoresRepository, CredoresRepository>();
+        services.AddScoped<IDocumentoRepository, DocumentoRepository>();
+        services.AddScoped<IGrupoRepository, GrupoRespository>();
+        services.AddScoped<IIndicadorRepository, IndicadorRepository>();
+        services.AddScoped<IProcessoRepository, ProcessoRepository>();
+        services.AddScoped<IRendaClienteRepository, RendaClienteRepository>();
+        services.AddScoped<ITipoDocumentoRepository, TipoDocumentoRepository>();
+        services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
         // Services
         services.AddScoped<IClienteService, ClienteService>();
+        services.AddScoped<IContatoClienteService, ContatoClienteService>();
+        services.AddScoped<IContatoIndicadorService, ContatoIndicadorService>();
+        services.AddScoped<ICredoresService, CredoresService>();
+        services.AddScoped<IDocumentoService, DocumentoService>();
+        services.AddScoped<IGrupoService, GrupoService>();
+        services.AddScoped<IIndicadorService, IndicadorService>();
+        services.AddScoped<IProcessoService, ProcessoService>();
+        services.AddScoped<IRendaClienteService, RendaClienteService>();
+        services.AddScoped<ISituacaoCreditoService, SituacaoCreditoService>();
+        services.AddScoped<ITipoDocumentoService, TipoDocumentoService>();
+        services.AddScoped<IUsuarioService, UsuarioService>();
 
         // AutoMapper
         services.AddAutoMapper(typeof(DtoMappingProfile));

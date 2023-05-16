@@ -4,8 +4,8 @@ namespace Siderum.Domain.Entities;
 
 public class RendaCliente : EntityBase
 {
-    public Decimal Renda { get; set; }
-    public String TipoComprovante { get; set; }
+    public decimal Renda { get; set; }
+    public string TipoComprovante { get; set; }
 
     //Relationship
     public Guid ClienteId { get; set; }

@@ -2,6 +2,6 @@
 
 namespace Siderum.Infra.Interfaces;
 
-public  interface IIdicadorRepository : IBaseRepository<Indicador>
+public  interface IIndicadorRepository : IBaseRepository<Indicador>
 {
 }
