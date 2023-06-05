@@ -6,11 +6,11 @@ namespace PlanBia.Api.Controllers;
 
 [ApiController]
 [Route("v1/api/[controller]/[action]")]
-public class ClientesController : Controller
+public class ContatoClienteController : Controller
 {
-    private readonly IClienteService _service;
+    private readonly IContatoClienteService _service;
 
-    public ClientesController(IClienteService service)
+    public ContatoClienteController(IContatoClienteService service)
     {
         _service = service;
     }
@@ -18,50 +18,41 @@ public class ClientesController : Controller
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var clientes = await _service.Get();
-        return Ok(clientes);
+        var contatoCliente = await _service.Get();
+        return Ok(contatoCliente);
     }
 
     [HttpGet]
     [Route("GetById/{id}")]
     public async Task<IActionResult> GetById(Guid id)
     {
-        var cliente = await _service.Get(id);
-
-        if (cliente == null)
-            return BadRequest("O Cliente não foi localizado!!!!");
-
-        return Ok(cliente);
+        var contatoCliente = await _service.Get(id);
+        if (contatoCliente == null)
+            return BadRequest("Contato Nao Localizado.");
+        return Ok(contatoCliente);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(ClienteDtoFlat clienteDto)
+    public async Task<IActionResult> Create(ContatoClienteDtoFlat contatoClienteDto)
     {
-
         if (!ModelState.IsValid)
         {
             return BadRequest("Passa os dados direito ae!!!");
         }
 
-        var result = await _service.Create(clienteDto);
-
+        var result = await _service.Create(contatoClienteDto);
         return Ok(result);
     }
 
-
     [HttpPut]
     [Route("Update/{id}")]
-    public async Task<IActionResult> Update(Guid id, ClienteDtoFlat clienteDto)
+    public async Task<IActionResult> Update(Guid id, ContatoClienteDtoFlat contatoClienteDto)
     {
-
         if (!ModelState.IsValid)
         {
             return BadRequest("Passa os dados direito ae!!!");
         }
-
-
-        var result = await _service.Update(id, clienteDto);
-
+        var result = await _service.Update(id, contatoClienteDto);
         return Ok(result);
     }
 
@@ -70,11 +61,9 @@ public class ClientesController : Controller
     public async Task<IActionResult> Delete(Guid id)
     {
         var result = await _service.Delete(id);
-
         if (!result)
-            return BadRequest("Cliente já foi removido!");
-
+            return BadRequest("Contato do cliente já foi removido!");
         return Ok(result);
+
     }
 }
-

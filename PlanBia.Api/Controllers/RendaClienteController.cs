@@ -1,16 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PlanBia.Application.Dtos;
 using PlanBia.Application.Interfaces;
+using Siderum.Domain.Entities;
 
 namespace PlanBia.Api.Controllers;
 
 [ApiController]
 [Route("v1/api/[controller]/[action]")]
-public class ClientesController : Controller
+public class RendaClienteController : Controller
 {
-    private readonly IClienteService _service;
+    private readonly IRendaClienteService _service;
 
-    public ClientesController(IClienteService service)
+    public RendaClienteController(IRendaClienteService service)
     {
         _service = service;
     }
@@ -18,24 +19,24 @@ public class ClientesController : Controller
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var clientes = await _service.Get();
-        return Ok(clientes);
+        var RendaCliente = await _service.Get();
+        return Ok(RendaCliente);
     }
 
     [HttpGet]
     [Route("GetById/{id}")]
     public async Task<IActionResult> GetById(Guid id)
     {
-        var cliente = await _service.Get(id);
+        var RendaCliente = await _service.Get(id);
 
-        if (cliente == null)
-            return BadRequest("O Cliente não foi localizado!!!!");
+        if (RendaCliente == null)
+            return BadRequest("O Renda cliente não foi localizado!!!!");
 
-        return Ok(cliente);
+        return Ok(RendaCliente);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(ClienteDtoFlat clienteDto)
+    public async Task<IActionResult> Create(RendaClienteDtoFlat rendaClienteDto)
     {
 
         if (!ModelState.IsValid)
@@ -43,7 +44,7 @@ public class ClientesController : Controller
             return BadRequest("Passa os dados direito ae!!!");
         }
 
-        var result = await _service.Create(clienteDto);
+        var result = await _service.Create(rendaClienteDto);
 
         return Ok(result);
     }
@@ -51,7 +52,7 @@ public class ClientesController : Controller
 
     [HttpPut]
     [Route("Update/{id}")]
-    public async Task<IActionResult> Update(Guid id, ClienteDtoFlat clienteDto)
+    public async Task<IActionResult> Update(Guid id, RendaClienteDtoFlat rendaClienteDto)
     {
 
         if (!ModelState.IsValid)
@@ -60,7 +61,7 @@ public class ClientesController : Controller
         }
 
 
-        var result = await _service.Update(id, clienteDto);
+        var result = await _service.Update(id, rendaClienteDto);
 
         return Ok(result);
     }
@@ -72,9 +73,8 @@ public class ClientesController : Controller
         var result = await _service.Delete(id);
 
         if (!result)
-            return BadRequest("Cliente já foi removido!");
+            return BadRequest("Renda cliente nao encontrada!");
 
         return Ok(result);
     }
 }
-

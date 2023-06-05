@@ -1,16 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PlanBia.Application.Dtos;
 using PlanBia.Application.Interfaces;
+using System.Runtime.CompilerServices;
 
 namespace PlanBia.Api.Controllers;
-
 [ApiController]
 [Route("v1/api/[controller]/[action]")]
-public class ClientesController : Controller
+public class GrupoController : Controller
 {
-    private readonly IClienteService _service;
-
-    public ClientesController(IClienteService service)
+    private readonly IGrupoService _service;
+    public GrupoController(IGrupoService service)
     {
         _service = service;
     }
@@ -18,50 +17,40 @@ public class ClientesController : Controller
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var clientes = await _service.Get();
-        return Ok(clientes);
+        var grupo = await _service.Get();
+        return Ok(grupo);
     }
 
     [HttpGet]
     [Route("GetById/{id}")]
     public async Task<IActionResult> GetById(Guid id)
     {
-        var cliente = await _service.Get(id);
-
-        if (cliente == null)
-            return BadRequest("O Cliente não foi localizado!!!!");
-
-        return Ok(cliente);
+        var grupo = await _service.Get(id);
+        if (grupo == null)
+            return BadRequest("Grupo nao encontrado.");
+        return Ok(grupo);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(ClienteDtoFlat clienteDto)
+    public async Task<IActionResult> Create(GrupoDtoFlat grupoDto)
     {
-
         if (!ModelState.IsValid)
         {
-            return BadRequest("Passa os dados direito ae!!!");
+            return BadRequest("Dados incorretos");
         }
-
-        var result = await _service.Create(clienteDto);
-
+        var result = await _service.Create(grupoDto);
         return Ok(result);
     }
 
-
     [HttpPut]
     [Route("Update/{id}")]
-    public async Task<IActionResult> Update(Guid id, ClienteDtoFlat clienteDto)
+    public async Task<IActionResult> Update(Guid id,  GrupoDtoFlat grupoDto)
     {
-
         if (!ModelState.IsValid)
         {
-            return BadRequest("Passa os dados direito ae!!!");
+            return BadRequest("Dados incorretos");
         }
-
-
-        var result = await _service.Update(id, clienteDto);
-
+        var result = await _service.Update(id, grupoDto);
         return Ok(result);
     }
 
@@ -70,11 +59,8 @@ public class ClientesController : Controller
     public async Task<IActionResult> Delete(Guid id)
     {
         var result = await _service.Delete(id);
-
         if (!result)
-            return BadRequest("Cliente já foi removido!");
-
+            return BadRequest("Grupo nao foi encontrado.");
         return Ok(result);
     }
 }
-

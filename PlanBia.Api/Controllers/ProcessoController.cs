@@ -1,16 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PlanBia.Application.Dtos;
 using PlanBia.Application.Interfaces;
+using Siderum.Domain.Entities;
+using System.Diagnostics;
 
 namespace PlanBia.Api.Controllers;
 
 [ApiController]
 [Route("v1/api/[controller]/[action]")]
-public class ClientesController : Controller
+public class ProcessoController : Controller
 {
-    private readonly IClienteService _service;
+    private readonly IProcessoService _service;
 
-    public ClientesController(IClienteService service)
+    public ProcessoController(IProcessoService service)
     {
         _service = service;
     }
@@ -18,24 +20,24 @@ public class ClientesController : Controller
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var clientes = await _service.Get();
-        return Ok(clientes);
+        var processo = await _service.Get();
+        return Ok(processo);
     }
 
     [HttpGet]
     [Route("GetById/{id}")]
     public async Task<IActionResult> GetById(Guid id)
     {
-        var cliente = await _service.Get(id);
+        var processo = await _service.Get(id);
 
-        if (cliente == null)
-            return BadRequest("O Cliente não foi localizado!!!!");
+        if (processo == null)
+            return BadRequest("O Processo não foi localizado!!!!");
 
-        return Ok(cliente);
+        return Ok(processo);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(ClienteDtoFlat clienteDto)
+    public async Task<IActionResult> Create(ProcessoDtoFlat processoDto)
     {
 
         if (!ModelState.IsValid)
@@ -43,7 +45,7 @@ public class ClientesController : Controller
             return BadRequest("Passa os dados direito ae!!!");
         }
 
-        var result = await _service.Create(clienteDto);
+        var result = await _service.Create(processoDto);
 
         return Ok(result);
     }
@@ -51,7 +53,7 @@ public class ClientesController : Controller
 
     [HttpPut]
     [Route("Update/{id}")]
-    public async Task<IActionResult> Update(Guid id, ClienteDtoFlat clienteDto)
+    public async Task<IActionResult> Update(Guid id, ProcessoDtoFlat processoDto)
     {
 
         if (!ModelState.IsValid)
@@ -60,7 +62,7 @@ public class ClientesController : Controller
         }
 
 
-        var result = await _service.Update(id, clienteDto);
+        var result = await _service.Update(id, processoDto);
 
         return Ok(result);
     }
@@ -72,9 +74,8 @@ public class ClientesController : Controller
         var result = await _service.Delete(id);
 
         if (!result)
-            return BadRequest("Cliente já foi removido!");
+            return BadRequest("Processo já foi removido!");
 
         return Ok(result);
     }
 }
-

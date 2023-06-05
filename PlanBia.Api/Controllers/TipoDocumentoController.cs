@@ -3,14 +3,13 @@ using PlanBia.Application.Dtos;
 using PlanBia.Application.Interfaces;
 
 namespace PlanBia.Api.Controllers;
-
 [ApiController]
 [Route("v1/api/[controller]/[action]")]
-public class ClientesController : Controller
+public class TipoDocumentoController : Controller
 {
-    private readonly IClienteService _service;
+    private readonly ITipoDocumentoService _service;
 
-    public ClientesController(IClienteService service)
+    public TipoDocumentoController(ITipoDocumentoService service)
     {
         _service = service;
     }
@@ -18,24 +17,24 @@ public class ClientesController : Controller
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var clientes = await _service.Get();
-        return Ok(clientes);
+        var tipoDocumento = await _service.Get();
+        return Ok(tipoDocumento);
     }
 
     [HttpGet]
     [Route("GetById/{id}")]
     public async Task<IActionResult> GetById(Guid id)
     {
-        var cliente = await _service.Get(id);
+        var tipoDocumento = await _service.Get(id);
 
-        if (cliente == null)
-            return BadRequest("O Cliente não foi localizado!!!!");
+        if (tipoDocumento == null)
+            return BadRequest("O Tipo Documento não foi localizado!!!!");
 
-        return Ok(cliente);
+        return Ok(tipoDocumento);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(ClienteDtoFlat clienteDto)
+    public async Task<IActionResult> Create(TipoDocumentoDtoFlat tipoDocumentoDto)
     {
 
         if (!ModelState.IsValid)
@@ -43,7 +42,7 @@ public class ClientesController : Controller
             return BadRequest("Passa os dados direito ae!!!");
         }
 
-        var result = await _service.Create(clienteDto);
+        var result = await _service.Create(tipoDocumentoDto);
 
         return Ok(result);
     }
@@ -51,7 +50,7 @@ public class ClientesController : Controller
 
     [HttpPut]
     [Route("Update/{id}")]
-    public async Task<IActionResult> Update(Guid id, ClienteDtoFlat clienteDto)
+    public async Task<IActionResult> Update(Guid id, TipoDocumentoDtoFlat tipoDocumentoDto)
     {
 
         if (!ModelState.IsValid)
@@ -60,7 +59,7 @@ public class ClientesController : Controller
         }
 
 
-        var result = await _service.Update(id, clienteDto);
+        var result = await _service.Update(id, tipoDocumentoDto);
 
         return Ok(result);
     }
@@ -72,9 +71,8 @@ public class ClientesController : Controller
         var result = await _service.Delete(id);
 
         if (!result)
-            return BadRequest("Cliente já foi removido!");
+            return BadRequest("Tipo documento nao encontrado.");
 
         return Ok(result);
     }
 }
-

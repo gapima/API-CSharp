@@ -6,62 +6,52 @@ namespace PlanBia.Api.Controllers;
 
 [ApiController]
 [Route("v1/api/[controller]/[action]")]
-public class ClientesController : Controller
+public class DocumentoController : Controller
 {
-    private readonly IClienteService _service;
-
-    public ClientesController(IClienteService service)
+    private readonly IDocumentoService _service;
+    public DocumentoController(IDocumentoService service)
     {
         _service = service;
     }
-
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var clientes = await _service.Get();
-        return Ok(clientes);
+        var documento = await _service.Get();
+        return Ok(documento);
     }
 
     [HttpGet]
     [Route("GetById/{id}")]
     public async Task<IActionResult> GetById(Guid id)
     {
-        var cliente = await _service.Get(id);
-
-        if (cliente == null)
-            return BadRequest("O Cliente não foi localizado!!!!");
-
-        return Ok(cliente);
+        var documento = await _service.Get(id);
+        if (documento == null)
+        {
+            return BadRequest("Documento nao encontrado.");
+        }
+        return Ok(documento);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(ClienteDtoFlat clienteDto)
+    public async Task<IActionResult> Create(DocumentoDtoFlat documentoDto)
     {
-
         if (!ModelState.IsValid)
         {
-            return BadRequest("Passa os dados direito ae!!!");
+            return BadRequest("Dados incorretos.");
         }
-
-        var result = await _service.Create(clienteDto);
-
+        var result = await _service.Create(documentoDto);
         return Ok(result);
     }
 
-
     [HttpPut]
     [Route("Update/{id}")]
-    public async Task<IActionResult> Update(Guid id, ClienteDtoFlat clienteDto)
+    public async Task<IActionResult> Update(Guid id, DocumentoDtoFlat documentoDto)
     {
-
         if (!ModelState.IsValid)
         {
-            return BadRequest("Passa os dados direito ae!!!");
+            return BadRequest("Dados Incorretos.");
         }
-
-
-        var result = await _service.Update(id, clienteDto);
-
+        var result = _service.Update(id, documentoDto);
         return Ok(result);
     }
 
@@ -70,11 +60,8 @@ public class ClientesController : Controller
     public async Task<IActionResult> Delete(Guid id)
     {
         var result = await _service.Delete(id);
-
         if (!result)
-            return BadRequest("Cliente já foi removido!");
-
+            return BadRequest("Documento nao encontrado");
         return Ok(result);
     }
 }
-
